@@ -1,2 +1,2 @@
 # Snake in C
-This is a game of Snake, programming in C, using [libxgfx](https://github.com/thecoder08/xgfx).
+This is a game of Snake, programmed in C, using [libxgfx](https://github.com/thecoder08/xgfx).
