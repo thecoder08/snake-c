@@ -4,9 +4,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define EVENT_BUFFER_SIZE 100
-XEvent eventBuffer[EVENT_BUFFER_SIZE];
-
 typedef struct {
     int x;
     int y;
@@ -63,28 +60,29 @@ int main() {
     apple.y = rand() % 50;
     initWindow(500, 500, "Snake");
     while(1) {
-        int eventsRead = checkWindowEvents(eventBuffer, EVENT_BUFFER_SIZE);
-        for (int i = 0; i < eventsRead; i++) {
-            XEvent event = eventBuffer[i];
-            if (event.type == ClosedWindow) {
+        Event event;
+        while (checkWindowEvent(&event)) {
+            if (event.type == WINDOW_CLOSE) {
                 return 0;
             }
-            if (event.type == KeyPress) {
-                if (event.xkey.keycode == 111) {
+            if (event.type == KEY_CHANGE) {
+                if (event.keychange.state == 1) {
+                if (event.keychange.key == 103) {
                     direction.y = -1;
                     direction.x = 0;
                 }
-                if (event.xkey.keycode == 116) {
+                if (event.keychange.key == 108) {
                     direction.y = 1;
                     direction.x = 0;
                 }
-                if (event.xkey.keycode == 113) {
+                if (event.keychange.key == 105) {
                     direction.y = 0;
                     direction.x = -1;
                 }
-                if (event.xkey.keycode == 114) {
+                if (event.keychange.key == 106) {
                     direction.y = 0;
                     direction.x = 1;
+                }
                 }
             }
         }
